@@ -3,11 +3,11 @@ import './login.css'
 
 function login() {
   return (
-    <div>
+    <div className='loginpagemain'>
 
         <h2>Login</h2>
 
-        <form action="">
+        <form action="" className='loginform'>
             <label>email</label>
             <input type="text" />
             <label>password</label>
@@ -16,7 +16,6 @@ function login() {
             
         </form>
 
-      
     </div>
   )
 }   
