@@ -4,13 +4,20 @@ import generateToken from "../utils/generate_token.js"
 
 export const createUser = async (req , res) => {
     try {
-        const { name , email , phone , area , agreement , password } = req.body;
-        if (!name || !email || !phone || !area || !agreement || !password) {
+        const { name , email , phone , area , agreement , password , confirmPassword } = req.body;
+        if (!name || !email || !phone || !area || !agreement || !password || !confirmPassword) {
+            console.log("All fields are required")
             return res.status(400).json({message: "All fields are required"})
         }
         const existuser = await User.findOne({email})
         if(existuser){
+            console.log("user email already exists")
             return res.status(400).json({message: "user email already exists"})
+        }
+
+        if(password !== confirmPassword){
+            console.log("password not matched")
+            return res.status(400).json({message: "password not matched"})
         }
 
         const hashedPassword = await bcrypt.hash(password , 10)
@@ -22,6 +29,7 @@ export const createUser = async (req , res) => {
             agreement,
             password: hashedPassword
         })
+        console.log("user created successfully" , user)
         return res.status(201).json({
             id: user._id,
             name: user.name,
@@ -30,6 +38,7 @@ export const createUser = async (req , res) => {
             area: user.area,
             agreement: user.agreement
         })
+        
         
     } catch (error) {
         console.log(error)
@@ -43,11 +52,13 @@ export const loginUser = async (req , res) => {
 
         const {email , password} = req.body;
         if(!email || !password) {
+            console.log("all fields are required")
             return res.status(400).json({message: "all fields are required"})
         }
 
         const existsuser = await User.findOne({email})
         if(!existsuser){
+            console.log("user not found")
             return res.status(400).json({message : "user not found"})
         }
 
@@ -56,6 +67,7 @@ export const loginUser = async (req , res) => {
             const token = generateToken(existsuser._id)
             return res.status(200).json({message: "login successfully" , token})
         }else{
+            console.log("password not matched")
             return res.status(400).json({message: "password not matched"})
         }
         

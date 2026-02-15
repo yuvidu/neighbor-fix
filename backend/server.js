@@ -21,6 +21,11 @@ app.listen(PORT, ()=>
 
 app.use("/api/users", userRoute)
 
+
+
+
+
+
 app.get("/", (req,res)=>{
     res.send("home api")
 })
