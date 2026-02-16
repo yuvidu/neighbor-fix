@@ -73,11 +73,12 @@ function Register() {
 
 
   return (
-    <div className='loginpagemain'>
+    <div className='registerpagemain'>
 
-        <h2>Register</h2>
+       
 
-        <form onSubmit={onsubmit} className='loginform'>
+        <form onSubmit={onsubmit} className='registerform'>
+            <h2 className='page-name-register'>Register</h2>
             <label>name</label>
             <input 
             type="text" 

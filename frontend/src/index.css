@@ -11,15 +11,34 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Custom CSS variables for better theming */
+  --primary-color: #646cff;
+  --primary-hover: #535bf2;
+  --primary-light: #747bff;
+  --bg-primary: #242424;
+  --bg-secondary: #1a1a1a;
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-secondary: #888;
+  --border-radius: 8px;
+  --transition: all 0.25s ease;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--primary-color);
   text-decoration: inherit;
+  transition: var(--transition);
 }
+
 a:hover {
-  color: #535bf2;
+  color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 body {
@@ -28,41 +47,67 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   line-height: 1.1;
+  margin: 0;
+  font-weight: 700;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.75em 1.5em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.2);
 }
+
+button:active {
+  transform: translateY(0);
+}
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
+    --primary-color: #646cff;
+    --primary-hover: #535bf2;
+    --primary-light: #747bff;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9f9f9;
+    --text-primary: #213547;
+    --text-secondary: #666;
   }
+  
   a:hover {
-    color: #747bff;
+    color: var(--primary-light);
   }
+  
   button {
-    background-color: #f9f9f9;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
   }
 }

@@ -24,7 +24,8 @@ function login() {
       const loginresponse = await api.post("users/login" , formdata)
       console.log(loginresponse)
       setformdata(initialstate)
-      
+      localStorage.setItem("token",loginresponse.data.token)
+      window.location.href = "/dashboard"
     } catch (error) {
       console.log(error)
     }
@@ -35,9 +36,11 @@ function login() {
   return (
     <div className='loginpagemain'>
 
-        <h2>Login</h2>
 
         <form onSubmit={onsubmit} className='loginform'>
+            <h2 className='page-name-login'>Login</h2>
+
+
             <label>email</label>
             <input 
             type="text" 
