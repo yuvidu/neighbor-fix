@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "./user.model";
+import User from "../models/user.model.js";
 
 
 const commentSchema = new mongoose.Schema({
@@ -37,7 +37,7 @@ const issueSchema = new mongoose.Schema({
         required : true,
     },
 
-    Image : {
+    image : {
         type : String,
         required : true,
     },
@@ -56,7 +56,6 @@ const issueSchema = new mongoose.Schema({
         type : String,
         enum : ["Pending", "In Progress", "Completed"],
         default : "Pending",
-        required : true,
     },
     comments : {
         type : [commentSchema],
@@ -65,13 +64,11 @@ const issueSchema = new mongoose.Schema({
     createdBy : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "User",
-        required : true,
     },
 
     updatedBy : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "User",
-        required : true,
     },
 },
 

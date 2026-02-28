@@ -3,6 +3,7 @@ import env from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js"
 import userRoute from "./routes/user.route.js"
+import issueRoute from "./routes/issue.route.js"
 
 env.config();
 connectDB();
@@ -20,6 +21,7 @@ app.listen(PORT, ()=>
 
 
 app.use("/api/users", userRoute)
+app.use("/api/issues", issueRoute)
 
 
 

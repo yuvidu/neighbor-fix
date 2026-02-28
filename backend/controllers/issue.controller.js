@@ -13,8 +13,8 @@ import Issue from "../models/issue.model.js"
 
 export const Createissue = async(req , res) => {
     try {
-        const {title , description , category ,Image , location , mapcoordinates , status , createdBy} = req.body;
-        if(!title || !description || !category || !location || !Image || !mapcoordinates || !status || !createdBy){
+        const {title , description , category ,image , location , mapcoordinates , status , createdBy , updatedBy} = req.body;
+        if(!title || !description || !category || !location || !image || !mapcoordinates || !status){
             console.log("all fields are required")
             return res.status(400).json({message: "all fields are required"})
         }
@@ -23,11 +23,12 @@ export const Createissue = async(req , res) => {
             title,
             description,
             category,
-            Image,
+            image,
             location,
             mapcoordinates,
             status,
-            createdBy
+            createdBy:req.user._id,
+            updatedBy:req.user._id
         })
 
         console.log("issue created successfully" , issue)

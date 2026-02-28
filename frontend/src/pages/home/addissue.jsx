@@ -1,6 +1,18 @@
 import React, { useState } from 'react'
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import './addissue.css'
 import api from '../../api'
+
+
+const containerStyle = {
+  width: "100%",
+  height: "400px"
+};
+
+const center = {
+  lat: 7.8731,
+  lng: 80.7718
+};
 
 function addissue() {
 
@@ -10,8 +22,8 @@ function addissue() {
     category: '',
     image: '',
     location: '',
-    mapCoordinates: '',
-    status: '',
+    mapcoordinates: null,
+    status: 'Pending',
     createdBy: ''
   })
 
@@ -19,19 +31,24 @@ function addissue() {
 
     e.preventDefault()
     try {
-      console.log(formdata)
-      api.post('/issues', formdata)
+      const token = localStorage.getItem('token')
+      api.post('/issues', formdata ,{
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      })
       setformdata({
         title: '',
         description: '',
         category: '',
         image: '',
         location: '',
-        mapCoordinates: '',
+        mapcoordinates: null,
         status: '',
         createdBy: ''
       })
       alert('Issue added successfully')
+      console.log(formdata)
     } catch (error) {
       console.log(error)
       alert('Failed to add issue')
@@ -44,6 +61,15 @@ function addissue() {
     setformdata({
       ...formdata,
       [e.target.name]: value
+    })
+  }
+
+  const handlemapclick = (e) => {
+    const lat = e.latLng.lat()
+    const lng = e.latLng.lng()
+    setformdata({
+      ...formdata,
+      mapcoordinates: {lat, lng}
     })
   }
 
@@ -61,7 +87,21 @@ function addissue() {
         </div>
         <div className="form-group">
           <label>Category</label>
-          <input type="text" name='category' value={formdata.category} onChange={onchange} />
+          <select
+          name='category'
+          value={formdata.category}
+          onChange={onchange}
+          >
+            <option value="">Select Category</option>
+            <option value="Garbage">Garbage</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Road">Road</option>
+            <option value="Streetlight">Streetlight</option>
+            <option value="Noise">Noise</option>
+            <option value="Flood">Flood</option>
+            <option value="Other">Other</option>
+
+          </select>
         </div>
         <div className="form-group">
           <label>Image</label>
@@ -73,15 +113,20 @@ function addissue() {
         </div>
         <div className="form-group">
           <label>Map Coordinates</label>
-          <input type="text" name='mapCoordinates' value={formdata.mapCoordinates} onChange={onchange} />
-        </div>
-        <div className="form-group">
-          <label>Status</label>
-          <input type="text" name='status' value={formdata.status} onChange={onchange} />
-        </div>
-        <div className="form-group">
-          <label>Created By</label>
-          <input type="text" name='createdBy' value={formdata.createdBy} onChange={onchange} />
+          <LoadScript googleMapsApiKey="AIzaSyC2mCZGcRDTaZJd9WYjAjxWDFAPkkbYyik">
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={center}
+              zoom={10}
+              onClick={handlemapclick}
+            >
+
+              {formdata.mapcoordinates && (
+                <Marker position={formdata.mapcoordinates} />
+              )}
+            </GoogleMap>
+
+          </LoadScript>
         </div>
         <button type='submit' className="submit-btn">Submit</button>
       </form>

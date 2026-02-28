@@ -1,13 +1,15 @@
 import express from 'express'
-import { createIssue ,getIssues,getIssueById,updateIssue,deleteIssue} from '../controllers/issue.controller.js'
+import { protecter } from '../middleware/auth.middleware.js'
+import { Createissue ,getIssueById,getAllIssues,Deleteissue,updateIssue} from '../controllers/issue.controller.js'
 
 const router = express.Router()
 
-router.post('/', createIssue)
-router.get('/', getIssues)
+router.post('/', protecter, Createissue)
+router.get('/', getAllIssues)
 router.get('/:id', getIssueById)
-router.put('/:id', updateIssue)
-router.delete('/:id', deleteIssue)
+router.put('/:id', protecter, updateIssue)
+router.delete('/:id', protecter, Deleteissue)
+
 
 
 export default router
