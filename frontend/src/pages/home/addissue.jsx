@@ -32,7 +32,7 @@ function addissue() {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      api.post('/issues', formdata ,{
+      const response = api.post('/issues', formdata ,{
         headers: {
           authorization: `Bearer ${token}`
         }
@@ -47,8 +47,13 @@ function addissue() {
         status: '',
         createdBy: ''
       })
-      alert('Issue added successfully')
-      console.log(formdata)
+      if (response.data.success){
+        alert('Issue added successfully')
+      }
+      else{
+        alert('Failed to add issue')
+      }
+      console.log(response.data)
     } catch (error) {
       console.log(error)
       alert('Failed to add issue')
