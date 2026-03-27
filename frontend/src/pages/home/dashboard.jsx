@@ -1,14 +1,13 @@
-import React from 'react'
+import Navigationbar from '../../component/navigationbar'
+import './dashboard.css'
+
 
 function dashboard() {
   return (
-    <div>
-
-
-        <h2>dashboard</h2>
-
-
+    <div className='dashboard-main-cont'>
+      <Navigationbar />
       
+
     </div>
   )
 }
