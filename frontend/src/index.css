@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
   font-weight: 400;
+  font-style: normal;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -18,7 +23,7 @@
   --primary-light: #747bff;
   --bg-primary: #242424;
   --bg-secondary: #1a1a1a;
-  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-primary: rgba(51, 0, 0, 0.87);
   --text-secondary: #888;
   --border-radius: 8px;
   --transition: all 0.25s ease;
@@ -74,7 +79,6 @@ button {
 }
 
 button:hover {
-  border-color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(100, 108, 255, 0.2);
 }

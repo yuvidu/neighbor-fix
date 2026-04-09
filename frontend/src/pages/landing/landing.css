@@ -1,0 +1,83 @@
+.landingmainbackground {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: aliceblue !important;
+}
+
+.stepboxes-land {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 120px;
+}
+
+.box-background{
+    background-color: #EEBBBB;
+    height: 130px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 28px;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transform: rotate(20deg);
+}
+.box-background-2{
+    background-color: #BBE9EE;
+    height: 130px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 28px;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transform: rotate(-20deg);
+}.box-background-3{
+    background-color: #EABBEE;
+    height: 130px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 28px;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transform: rotate(20deg);
+}
+/* Add this to keep text upright */
+.landing-start-buttons{
+    background-color: #D5EEBB;
+    color: #320000;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 4px 2px;
+    border-radius: 8px;
+    outline: none !important;
+    -webkit-appearance: none !important; /* Add this for Safari/Chrome */
+    -moz-appearance: none !important;    /* Add this for Firefox */
+    appearance: none !important;         /* Standard property */
+    box-shadow: inset 0 8px 8px rgba(212, 159, 15, 0.1);
+
+
+}
+.landing-start-buttons:hover {
+    background-color: #92b56d;
+    transform: translateY(-2px); /* Optional: lift effect */
+}
+ 
+.landing-start-buttons:focus {
+    outline: none;          /* Remove focus outline */
+    box-shadow: 0 0 0 3px rgba(187, 234, 238, 0.5); /* Optional: custom focus */
+}
+ 
+.landing-start-buttons:active {
+    transform: translateY(0);  /* Optional: press effect */
+}

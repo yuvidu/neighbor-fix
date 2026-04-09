@@ -7,7 +7,7 @@ const initialstate = {
     password : ""
 }
 
-function login() {
+function Login() {
   const [formdata , setformdata] = useState(initialstate)
 
   const onchange = (e) => {
@@ -63,4 +63,4 @@ function login() {
   )
 }   
 
-export default login
+export default Login

@@ -1,5 +1,6 @@
 import './nav.css'
 
+
 function Navigationbar() {
   return (
     <div>
@@ -7,7 +8,7 @@ function Navigationbar() {
         <ul className='nav-list'>
           <li><a href="/">Home</a></li>
           <li><a href="/addissue">Add Issue</a></li>
-          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/">Dashboard</a></li>
         </ul>
       </nav>
     </div>

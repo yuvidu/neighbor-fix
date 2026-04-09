@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import './addissue.css'
 import api from '../../api'
-
+import Navigationbar from '../../component/navigationbar'
 
 const containerStyle = {
   width: "100%",
@@ -79,6 +79,8 @@ function addissue() {
   }
 
   return (
+    <div className='loginmain'>
+    <Navigationbar/>
     <div className="add-issue-container">
       <h1>Add Issue</h1>
       <form onSubmit={onsubmit} className="add-issue-form">
@@ -135,6 +137,7 @@ function addissue() {
         </div>
         <button type='submit' className="submit-btn">Submit</button>
       </form>
+    </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import Login from './pages/login/login'
 import Register from './pages/register/register'
 import Addissue from './pages/home/addissue'
 import Dashboard from './pages/home/dashboard'
+import Landing from './pages/landing/landing'
 
 function App() {
  
@@ -15,6 +16,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/' element={<Dashboard />}/>
+        <Route path='/landing' element={<Landing />}/>
       </Routes>
     </>
   )
