@@ -25,6 +25,7 @@ function Login() {
       console.log(loginresponse)
       setformdata(initialstate)
       localStorage.setItem("token",loginresponse.data.token)
+      localStorage.setItem('user',JSON.stringify(loginresponse.data.user))
       window.location.href = "/dashboard"
     } catch (error) {
       console.log(error)

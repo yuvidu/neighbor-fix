@@ -15,8 +15,10 @@ function App() {
         <Route path='/addissue' element={<Addissue />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
-        <Route path='/' element={<Dashboard />}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
         <Route path='/landing' element={<Landing />}/>
+        <Route path='/' element={<Landing />}/>
+
       </Routes>
     </>
   )

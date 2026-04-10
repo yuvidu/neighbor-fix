@@ -18,9 +18,9 @@
   -moz-osx-font-smoothing: grayscale;
   
   /* Custom CSS variables for better theming */
-  --primary-color: #646cff;
-  --primary-hover: #535bf2;
-  --primary-light: #747bff;
+  --primary-color: #EEBBBC;
+  --primary-hover: #EEBBBC;
+  --primary-light: #EEBBBC;
   --bg-primary: #242424;
   --bg-secondary: #1a1a1a;
   --text-primary: rgba(51, 0, 0, 0.87);
@@ -97,9 +97,9 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
-    --primary-color: #646cff;
-    --primary-hover: #535bf2;
-    --primary-light: #747bff;
+    --primary-color: #EEBBBC;
+    --primary-hover: #EEBBBC;
+    --primary-light: #EEBBBC;
     --bg-primary: #ffffff;
     --bg-secondary: #f9f9f9;
     --text-primary: #213547;

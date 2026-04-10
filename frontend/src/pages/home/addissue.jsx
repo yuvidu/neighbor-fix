@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import './addissue.css'
 import api from '../../api'
 import Navigationbar from '../../component/navigationbar'
+import { useNavigate } from 'react-router-dom';
 
 const containerStyle = {
   width: "100%",
@@ -14,7 +15,11 @@ const center = {
   lng: 80.7718
 };
 
-function addissue() {
+function AddIssue() {
+
+  const navigate = useNavigate();
+
+
 
   const [formdata, setformdata] = useState({
     title: '',
@@ -32,7 +37,7 @@ function addissue() {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      const response = api.post('/issues', formdata ,{
+      const response = api.post('/issues', formdata, {
         headers: {
           authorization: `Bearer ${token}`
         }
@@ -47,10 +52,10 @@ function addissue() {
         status: '',
         createdBy: ''
       })
-      if (response.data.success){
+      if (response.data.success) {
         alert('Issue added successfully')
       }
-      else{
+      else {
         alert('Failed to add issue')
       }
       console.log(response.data)
@@ -74,72 +79,81 @@ function addissue() {
     const lng = e.latLng.lng()
     setformdata({
       ...formdata,
-      mapcoordinates: {lat, lng}
+      mapcoordinates: { lat, lng }
     })
   }
 
+  function navbacktohome (){
+    navigate("/dashboard")
+
+  }
+
   return (
-    <div className='loginmain'>
-    <Navigationbar/>
-    <div className="add-issue-container">
-      <h1>Add Issue</h1>
-      <form onSubmit={onsubmit} className="add-issue-form">
-        <div className="form-group">
-          <label>Title</label>
-          <input type="text" name='title' value={formdata.title} onChange={onchange} />
-        </div>
-        <div className="form-group">
-          <label>Description</label>
-          <input type="text" name='description' value={formdata.description} onChange={onchange} />
-        </div>
-        <div className="form-group">
-          <label>Category</label>
-          <select
-          name='category'
-          value={formdata.category}
-          onChange={onchange}
-          >
-            <option value="">Select Category</option>
-            <option value="Garbage">Garbage</option>
-            <option value="Electricity">Electricity</option>
-            <option value="Road">Road</option>
-            <option value="Streetlight">Streetlight</option>
-            <option value="Noise">Noise</option>
-            <option value="Flood">Flood</option>
-            <option value="Other">Other</option>
+    <div className='addisse-main'>
+      <div className='topsection-addissue'>
+        <h2 className='addnewcasetitle'>Add new case</h2>
+        <button className='navback' onClick={navbacktohome}>back</button>
+      </div>
+      
 
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Image</label>
-          <input type="text" name='image' value={formdata.image} onChange={onchange} />
-        </div>
-        <div className="form-group">
-          <label>Location</label>
-          <input type="text" name='location' value={formdata.location} onChange={onchange} />
-        </div>
-        <div className="form-group">
-          <label>Map Coordinates</label>
-          <LoadScript googleMapsApiKey="AIzaSyC2mCZGcRDTaZJd9WYjAjxWDFAPkkbYyik">
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={center}
-              zoom={10}
-              onClick={handlemapclick}
+      <div className="add-issue-container">
+        <form onSubmit={onsubmit} className="add-issue-form">
+          <div className="form-group">
+            <label>Title</label>
+            <input type="text" name='title' value={formdata.title} onChange={onchange} />
+          </div>
+          <div className="form-group">
+            <label>Description</label>
+            <input type="text" name='description' value={formdata.description} onChange={onchange} />
+          </div>
+          <div className="form-group">
+            <label>Category</label>
+            <select
+              name='category'
+              value={formdata.category}
+              onChange={onchange}
             >
+              <option value="">Select Category</option>
+              <option value="Garbage">Garbage</option>
+              <option value="Electricity">Electricity</option>
+              <option value="Road">Road</option>
+              <option value="Streetlight">Streetlight</option>
+              <option value="Noise">Noise</option>
+              <option value="Flood">Flood</option>
+              <option value="Other">Other</option>
 
-              {formdata.mapcoordinates && (
-                <Marker position={formdata.mapcoordinates} />
-              )}
-            </GoogleMap>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Image</label>
+            <input type="text" name='image' value={formdata.image} onChange={onchange} />
+          </div>
+          <div className="form-group">
+            <label>Location</label>
+            <input type="text" name='location' value={formdata.location} onChange={onchange} />
+          </div>
+          <div className="form-group">
+            <label>Map Coordinates</label>
+            <LoadScript googleMapsApiKey="AIzaSyC2mCZGcRDTaZJd9WYjAjxWDFAPkkbYyik">
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={10}
+                onClick={handlemapclick}
+              >
 
-          </LoadScript>
-        </div>
-        <button type='submit' className="submit-btn">Submit</button>
-      </form>
-    </div>
+                {formdata.mapcoordinates && (
+                  <Marker position={formdata.mapcoordinates} />
+                )}
+              </GoogleMap>
+
+            </LoadScript>
+          </div>
+          <button type='submit' className="submit-btn">Submit</button>
+        </form>
+      </div>
     </div>
   )
 }
 
-export default addissue
+export default AddIssue

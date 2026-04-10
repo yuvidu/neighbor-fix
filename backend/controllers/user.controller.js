@@ -65,7 +65,13 @@ export const loginUser = async (req , res) => {
         const Passwordcompare = await bcrypt.compare(password , existsuser.password)
         if(Passwordcompare){
             const token = generateToken(existsuser._id)
-            return res.status(200).json({message: "login successfully" , token})
+            return res.status(200).json({message: "login successfully" , token ,
+                user: {
+                    name: existsuser.name,
+                    phone: existsuser.phone,
+                    area: existsuser.area,
+                }
+            })
         }else{
             console.log("password not matched")
             return res.status(400).json({message: "password not matched"})
