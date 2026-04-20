@@ -5,6 +5,7 @@ import Register from './pages/register/register'
 import Addissue from './pages/home/addissue'
 import Dashboard from './pages/home/dashboard'
 import Landing from './pages/landing/landing'
+import Aboutus from './pages/home/aboutus'
 
 function App() {
  
@@ -18,6 +19,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />}/>
         <Route path='/landing' element={<Landing />}/>
         <Route path='/' element={<Landing />}/>
+        <Route path='/aboutus' element={<Aboutus />}/>
 
       </Routes>
     </>
